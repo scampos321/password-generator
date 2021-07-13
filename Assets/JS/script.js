@@ -15,7 +15,7 @@ function generatePassword(){
   var numericChar = ['1','2','3','4','5','6','7','8','9','0'];
   var specialChar = ['?',',','<','>',"'",'"',';',':','/','|','[',']','=','_','&','^','!','#','$','%','(',')','*','+','-','.','~','`','@','{','}'];
   var passwordLength = prompt ('How many characters would you like your password to be? Enter a number between 8 to 128.');
-  var password = "";
+  
   //validation
 
   if (isNaN(passwordLength)) {
@@ -56,18 +56,18 @@ function generatePassword(){
   if (wantSpecialChar) {
     mainArray = mainArray.concat(specialChar)
   }
-  console.log(mainArray + 'main array test')
 
+  console.log(mainArray + 'main array test')
+  var password = [];
   // Write password to the #password input
   for (var i=0; i < passwordLength; i++) {
     var randomChar = Math.floor(Math.random() * mainArray.length);
-    console.log(randomChar, "This is random number")
-    password += mainArray.String(randomChar,randomChar+1);
+    console.log(randomChar, "This is random number");
+    password.push(String.fromCharCode(randomChar));
+    //password += mainArray.toString(randomChar,randomChar+1);
   }
-  return password;
+  return password.join("");
 }
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
