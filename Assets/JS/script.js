@@ -4,9 +4,8 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  console.log(password, 'this is password')
   passwordText.value = password;
-
 }
 function generatePassword(){
   var lowerCasedChar = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -33,40 +32,34 @@ function generatePassword(){
     return;
   }
 
-  var wantLowerCase = confirm("Press OK to add lower case characters to your password.")
-  var wantUpperCase = confirm("Press OK to add upper case characters to your password.")
-  var wantSpecialChar = confirm("Press OK to add special characters to your password.")
-  var wantNumeric = confirm("Press OK to add numeric characters to your password.")
+  const wantLowerCase = confirm("Press OK to add lower case characters to your password.")
+  const wantUpperCase = confirm("Press OK to add upper case characters to your password.")
+  const wantSpecialChar = confirm("Press OK to add special characters to your password.")
+  const wantNumeric = confirm("Press OK to add numeric characters to your password.")
 
   
   var mainArray = [];
   
   if (wantLowerCase) {
-    mainArray = mainArray.concat(lowerCasedChar)
+    mainArray = mainArray.concat(lowerCasedChar);
+  } else if (wantUpperCase) {
+    mainArray = mainArray.concat(upperCasedChar);
+  } else if (wantNumeric) {
+    mainArray = mainArray.concat(numericChar);
+  } else if (wantSpecialChar) {
+    mainArray = mainArray.concat(specialChar);
   }
 
-  if (wantUpperCase) {
-    mainArray = mainArray.concat(upperCasedChar)
-  }
+  console.log(mainArray , 'main array test')
+  //changed variable for password to something different
 
-  if (wantNumeric) {
-    mainArray = mainArray.concat(numericChar)
-  }
-
-  if (wantSpecialChar) {
-    mainArray = mainArray.concat(specialChar)
-  }
-
-  console.log(mainArray + 'main array test')
-  var password = [];
+  var finalPassword = [];
   // Write password to the #password input
   for (var i=0; i < passwordLength; i++) {
-    var randomChar = Math.floor(Math.random() * mainArray.length);
-    console.log(randomChar, "This is random number");
-    password.push(String.fromCharCode(randomChar));
-    //password += mainArray.toString(randomChar,randomChar+1);
+    const randomChar = Math.floor(Math.random() * mainArray.length);
+    finalPassword.push(mainArray[randomChar]);
   }
-  return password.join("");
+  return finalPassword.join("");
 }
 
 // Add event listener to generate button
