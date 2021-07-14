@@ -42,11 +42,14 @@ function generatePassword(){
   
   if (wantLowerCase) {
     mainArray = mainArray.concat(lowerCasedChar);
-  } else if (wantUpperCase) {
+  }
+   if (wantUpperCase) {
     mainArray = mainArray.concat(upperCasedChar);
-  } else if (wantNumeric) {
+  }
+   if (wantNumeric) {
     mainArray = mainArray.concat(numericChar);
-  } else if (wantSpecialChar) {
+  }
+   if (wantSpecialChar) {
     mainArray = mainArray.concat(specialChar);
   }
 
