@@ -4,7 +4,6 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  console.log(password, 'this is password')
   passwordText.value = password;
 }
 function generatePassword(){
@@ -36,8 +35,12 @@ function generatePassword(){
   const wantUpperCase = confirm("Press OK to add upper case characters to your password.")
   const wantSpecialChar = confirm("Press OK to add special characters to your password.")
   const wantNumeric = confirm("Press OK to add numeric characters to your password.")
-
-  
+  //user cancels all characters
+  if(!wantLowerCase && !wantUpperCase && !wantSpecialChar && !wantNumeric) {
+    alert("You need to use at least one of the required characters to generate the password.");
+    return;
+  }
+  //concat variables into an array
   var mainArray = [];
   
   if (wantLowerCase) {
@@ -53,8 +56,8 @@ function generatePassword(){
     mainArray = mainArray.concat(specialChar);
   }
 
-  console.log(mainArray , 'main array test')
-  //changed variable for password to something different
+  
+  //changed variable for password to finalPassword
 
   var finalPassword = [];
   // Write password to the #password input
